@@ -58,3 +58,4 @@ code: |-
   }
 
   return "失败"
+model: gpt-4o-mini

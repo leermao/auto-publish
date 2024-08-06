@@ -18,6 +18,8 @@ parameters:
         projectId: "475837658589822976"
         id: 20240806093537-cEWuis
         from: assistant
+        parameters:
+          title: "{{ title.title }}"
   - id: wO4cPFu32mXTzrB32wNoE
     key: image
     type: source
@@ -28,7 +30,7 @@ parameters:
         id: 20240806094352-rrjTTU
         from: assistant
         parameters:
-          title: "{{title}}"
+          title: "{{ title.title }}"
 prompts:
   BMRp6nl2A0zIDvdkRt9Ce:
     index: 0

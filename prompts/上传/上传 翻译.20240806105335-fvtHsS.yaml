@@ -61,7 +61,7 @@ code: >
 
 
 
-  const fns = (languages || []).map(async (i)=>{
+  const fns = (list || []).map(async (i)=>{
     const result = await call({
       name: 'did-comments',
       path: joinURL('/api/posts/call', id, 'translations', i.language),
@@ -74,7 +74,7 @@ code: >
   })
 
 
-  const list = await Promise.all(fns);
+  await Promise.all(fns);
 
 
   return "success"

@@ -34,5 +34,5 @@ updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: "\bimages"
 model: dall-e-3
 prompt: >
-  你是一个图像提示生成器。从 {{ title }}  {{ description.description
-  }}}中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文, 生成的图片要求适合作为当前内容的配图。
+  你是一个图像提示生成器。从 {{ title }}  {{ description.description }}
+  中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文, 生成的图片要求适合作为当前内容的配图。
