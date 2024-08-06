@@ -1,20 +1,60 @@
-type: prompt
+type: function
 parameters:
-  - id: FxSDCWVyXDACK5sSiYMkO
-    type: string
-    key: question
+  - id: vQGSADvuog7K6pLrDSc8N
+    key: init
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806100101-6TQsv6
+        from: assistant
+  - id: PD7ZJaRX8jIkkhUTDHp9p
+    key: upload
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806105242-f8mkug
+        from: assistant
+        parameters:
+          title: "{{ init.title }}"
+          content: "{{ init.content }}"
+          image: "{{ init.image }}"
+    hidden: false
+  - id: UMtuIGOynqbCznQfnLrVk
+    key: result
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806105335-fvtHsS
+        from: assistant
+        parameters:
+          title: "{{ init.title }}"
+          content: "{{ init.content }}"
+          id: "{{ upload.id }}"
 prompts:
-  - type: message
+  XxrRWk2WtHU7zbThXH-87:
+    index: 0
     data:
-      id: XxrRWk2WtHU7zbThXH-87
-      role: user
-      content: "{{ question }}"
-outputVariables:
-  - id: 3_nOILvED5SlB6_mUzsaI
-    name: $text
+      type: message
+      data:
+        id: XxrRWk2WtHU7zbThXH-87
+        role: user
+        content: "{{ result }}"
+outputVariables: []
 id: 20240806093139-WaxIG1
 createdAt: 2024-08-06T01:31:39.745Z
 updatedAt: 2024-08-06T01:31:39.745Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 生成数据
+code: |-
+  if(result==='success') {
+    return "成功"
+  }
+
+  return "失败"

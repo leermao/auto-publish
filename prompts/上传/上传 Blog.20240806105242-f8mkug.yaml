@@ -1,0 +1,79 @@
+type: function
+parameters:
+  - id: 18oOEYlrV5GQm45QbLIC7
+    key: title
+  - id: uJ6DFISjgU55s1QxOulGs
+    key: content
+  - id: jsXYB5VhsuuSDzOBiqSQ3
+    key: image
+prompts:
+  NTdJigtLCBziAsS48vBTh:
+    index: 0
+    data:
+      type: message
+      data:
+        id: NTdJigtLCBziAsS48vBTh
+        role: user
+        content: "{{ question }}"
+outputVariables: []
+id: 20240806105242-f8mkug
+createdAt: 2024-08-06T02:52:42.615Z
+updatedAt: 2024-08-06T02:52:42.615Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 上传 Blog
+code: |
+  const getUserHeader = () => {
+    const user = context.user;
+    return {
+      'x-user-did': user?.did,
+      'x-user-role': user?.role,
+      'x-user-provider': user?.provider,
+      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
+      'x-user-wallet-os': user?.walletOS,
+    };
+  };
+
+
+  const response = await call({
+    name: 'did-comments',
+    path: '/api/blogs/call/publish',
+    method: 'POST',
+    data: { 
+      title: title, 
+      content:content, 
+      publishTime: new Date(), 
+      author: context.user.did
+    },
+    headers: getUserHeader()
+  });
+
+
+  const labels = [];
+  if(labels.length) {
+    await call({
+      name: 'did-comments',
+      path: `/api/blogs/call/${response.data?.id}/settings`,
+      method: 'PUT',
+      data: { labels: labels, author: context.user.did },
+      headers: getUserHeader()
+    });
+  }
+
+
+  await call({
+    name: 'did-comments',
+    path: joinURL('/api/blogs/call/', response.data?.id, 'settings'),
+    method: 'PUT',
+    data: { cover: image, author: context.user.did },
+    headers: getUserHeader()
+  });
+
+  // 发布tag
+  const id: string = response.data?.id;
+  const slug: string = response.data?.slug;
+
+  return {
+    id,
+    slug
+  }

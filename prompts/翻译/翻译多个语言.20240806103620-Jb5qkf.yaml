@@ -28,8 +28,13 @@ outputVariables:
         - id: _OOhNVgINCx_1AguMqpFR
           type: string
           name: translated_content
+          required: true
+        - id: YAbuRPnC4zdnMUkeAe1Er
+          type: string
+          name: language
+          required: true
       required: true
-    required: true
+    required: false
 name: 翻译多个语言
 parameters:
   - id: VjiwA4vgq0MwZHqiHEfey
@@ -37,7 +42,7 @@ parameters:
   - id: ah2wWfLQm9hZv9fFIQXYJ
     key: content
 code: |
-  const languages = ["中文", "日文", "法语"];
+  const languages = ["zh"];
 
   const getUserHeader = () => {
     const user = context.user;
@@ -70,10 +75,9 @@ code: |
       headers: getUserHeader()
     });
 
-    return result.data
+    return {...result.data,language: i }
   })
 
   const list = await Promise.all(fns);
 
-  console.log(list);
-  return list
+  return { list }

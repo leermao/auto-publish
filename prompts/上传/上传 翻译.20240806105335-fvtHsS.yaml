@@ -1,0 +1,80 @@
+type: function
+parameters:
+  - id: 4wxKNj49tQd5VwDRenYCf
+    key: title
+  - id: AKk5OVwjtgTIyK4A0BuwL
+    key: content
+  - id: 4746tJw8DEolxDReDgJTD
+    key: translate
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806103620-Jb5qkf
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+  - id: 3AOb0aslhPKfG5y2hefc7
+    key: id
+prompts:
+  4-QxIZH6RBgYAmzSgRp7L:
+    index: 0
+    data:
+      type: message
+      data:
+        id: 4-QxIZH6RBgYAmzSgRp7L
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: hxkznAtdGcUzwHQBv0hPB
+    name: status
+    description: 上传转态
+    required: true
+id: 20240806105335-fvtHsS
+createdAt: 2024-08-06T02:53:35.783Z
+updatedAt: 2024-08-06T02:53:35.783Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 上传 翻译
+model: gpt-4o-mini
+prompt: "{{question}}"
+code: >
+  const list = [{
+    translated_title: title,
+    translated_content: content,
+    language: 'en',
+  }, ...(translate?.list ||[])];
+
+
+  const getUserHeader = () => {
+    const user = context.user;
+    return {
+      'x-user-did': user?.did,
+      'x-user-role': user?.role,
+      'x-user-provider': user?.provider,
+      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
+      'x-user-wallet-os': user?.walletOS,
+    };
+  };
+
+
+
+  const fns = (languages || []).map(async (i)=>{
+    const result = await call({
+      name: 'did-comments',
+      path: joinURL('/api/posts/call', id, 'translations', i.language),
+      method: 'POST',
+      data: { title: i.translated_title || '', content: i.translated_content, author: context.user.did },
+      headers: getUserHeader()
+    });
+
+    return result.data
+  })
+
+
+  const list = await Promise.all(fns);
+
+
+  return "success"
