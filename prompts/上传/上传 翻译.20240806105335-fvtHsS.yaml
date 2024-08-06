@@ -49,7 +49,7 @@ code: |
       method: 'POST',
       data: { 
         title: i.translated_title || '', 
-        content: i.translated_content, 
+        content: (i.translated_content||'').replace(/\\n/g, '\n'), , 
         locale: i.language },
       headers: context.getUserHeader()
     });
