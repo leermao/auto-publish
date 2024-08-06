@@ -23,14 +23,13 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传 Blog
 code: |
-  console.log(content.replace(/\\n/g, '\n'))
   const response = await call({
     name: 'did-comments',
     path: '/api/call/blog/publish',
     method: 'POST',
     data: { 
       title: title, 
-      content: content.replace(/\\n/g, '\n'), 
+      content: content, 
       publishTime: new Date(), 
       boardId:'blog-default',
       locale: 'en',
