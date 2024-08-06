@@ -44,18 +44,6 @@ parameters:
 code: |
   const languages = ["zh"];
 
-  const getUserHeader = () => {
-    const user = context.user;
-    return {
-      'x-user-did': user?.did,
-      'x-user-role': user?.role,
-      'x-user-provider': user?.provider,
-      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
-      'x-user-wallet-os': user?.walletOS,
-    };
-  };
-
-
   const fns = (languages || []).map(async (i)=>{
     const result = await call({
       name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
@@ -72,7 +60,7 @@ code: |
         },
         sessionId: 'call',
       },
-      headers: getUserHeader()
+      headers: context.getUserHeader()
     });
 
     return {...result.data,language: i }
