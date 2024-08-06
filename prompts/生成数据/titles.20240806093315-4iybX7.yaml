@@ -1,0 +1,27 @@
+type: prompt
+parameters: []
+prompts:
+  - type: message
+    data:
+      id: SRVUDSF7sCBlErxXYEjbb
+      role: system
+      content: 请帮我推荐 10 个占星相关的博客文章标题﻿
+outputVariables:
+  - id: tZfUsqFlOAHFP3YoWq7-I
+    name: $text
+    hidden: true
+  - id: 8Pxpn9opFm4I8_RZ6LN_0
+    name: titles
+    type: array
+    element:
+      id: gqyIieVFhDcYXs60Ib0nS
+      name: element
+      type: string
+      required: true
+    required: true
+id: 20240806093315-4iybX7
+createdAt: 2024-08-06T01:33:15.402Z
+updatedAt: 2024-08-06T01:33:15.402Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: titles

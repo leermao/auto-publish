@@ -1,0 +1,53 @@
+type: function
+parameters:
+  - id: qyP3grFpN8EDJLTS7PFI2
+    key: title
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806093421-8WmgHD
+        from: assistant
+  - id: vYaIz4wvtBvegdzdhxoqo
+    key: content
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806093537-cEWuis
+        from: assistant
+  - id: wO4cPFu32mXTzrB32wNoE
+    key: image
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806094352-rrjTTU
+        from: assistant
+        parameters:
+          title: "{{title}}"
+prompts:
+  BMRp6nl2A0zIDvdkRt9Ce:
+    index: 0
+    data:
+      type: message
+      data:
+        id: BMRp6nl2A0zIDvdkRt9Ce
+        role: user
+        content: "{{ question }}"
+outputVariables: []
+id: 20240806100101-6TQsv6
+createdAt: 2024-08-06T02:01:01.863Z
+updatedAt: 2024-08-06T02:01:01.863Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 初始化
+code: |
+  return {
+    title: title.title,
+    content: content.content,
+    image: image.$images?.[0]?.url
+  }

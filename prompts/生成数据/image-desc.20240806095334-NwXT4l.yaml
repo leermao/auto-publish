@@ -1,0 +1,41 @@
+type: prompt
+parameters:
+  - id: J4q0iEQBaqFfRnplrBtEU
+    key: title
+    from: editor
+    type: string
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806093421-8WmgHD
+        from: assistant
+    hidden: false
+prompts:
+  - type: message
+    data:
+      id: krjIqhGZH3N3af_TX8tOS
+      role: user
+      content: >-
+        你是一个图像提示生成器。从 {{ title }}}中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文,
+        生成的图片要求适合作为当前内容的配图。
+
+
+        要求：
+
+        - 请直接给出描述，不需要其他多余的解释
+
+        - 保持输出300个字符或者以内
+outputVariables:
+  - id: meGLjmXcpt3BihmVOpYGI
+    name: $text
+  - id: KE_UBQ2wZtbueJKIAMeEs
+    name: description
+    description: 图片的描述
+    required: true
+id: 20240806095334-NwXT4l
+createdAt: 2024-08-06T01:53:34.368Z
+updatedAt: 2024-08-06T01:53:34.368Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: image-desc

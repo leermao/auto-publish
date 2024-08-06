@@ -1,0 +1,38 @@
+type: image
+parameters:
+  - id: DXqj92vUQJFyMvgvgfJHx
+    key: title
+  - id: UOoKP46bV8TcT1v9OQrzK
+    key: description
+    from: editor
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806095334-NwXT4l
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+prompts:
+  KAHgOwKu4Qq06FWAAmv7h:
+    index: 0
+    data:
+      type: message
+      data:
+        id: KAHgOwKu4Qq06FWAAmv7h
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: lmk6A0k12K-J1HrWV3n77
+    name: $images
+id: 20240806094352-rrjTTU
+createdAt: 2024-08-06T01:43:52.527Z
+updatedAt: 2024-08-06T01:43:52.527Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: "\bimages"
+model: dall-e-3
+prompt: >
+  你是一个图像提示生成器。从 {{ title }}  {{ description.description
+  }}}中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文, 生成的图片要求适合作为当前内容的配图。

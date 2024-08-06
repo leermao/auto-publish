@@ -1,0 +1,79 @@
+id: 20240806103620-Jb5qkf
+type: function
+createdAt: 2024-08-06T02:36:20.930Z
+updatedAt: 2024-08-06T02:36:20.930Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+prompts:
+  fscMlMzBB3OD1asjtbB7-:
+    index: 0
+    data:
+      type: message
+      data:
+        id: fscMlMzBB3OD1asjtbB7-
+        role: user
+outputVariables:
+  - id: gNhttZIlUytkbGMTlMMIB
+    name: list
+    type: array
+    element:
+      id: q2XkcI9P4qbSY_bNCORe6
+      name: element
+      type: object
+      properties:
+        - id: nv_zax5fwiyy-LFl8XI7p
+          type: string
+          name: translated_title
+          required: true
+        - id: _OOhNVgINCx_1AguMqpFR
+          type: string
+          name: translated_content
+      required: true
+    required: true
+name: 翻译多个语言
+parameters:
+  - id: VjiwA4vgq0MwZHqiHEfey
+    key: title
+  - id: ah2wWfLQm9hZv9fFIQXYJ
+    key: content
+code: |
+  const languages = ["中文", "日文", "法语"];
+
+  const getUserHeader = () => {
+    const user = context.user;
+    return {
+      'x-user-did': user?.did,
+      'x-user-role': user?.role,
+      'x-user-provider': user?.provider,
+      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
+      'x-user-wallet-os': user?.walletOS,
+    };
+  };
+
+
+  const fns = (languages || []).map(async (i)=>{
+    const result = await call({
+      name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
+      method: 'POST',
+      path: '/api/ai/call'
+      data: {
+        projectId: '475837658589822976',
+        ref: 'main',
+        assistantId: '20240806101303-BwcRHM',
+        inputs: {
+          title,
+          content: content,
+          language: i
+        },
+        sessionId: 'call',
+      },
+      headers: getUserHeader()
+    });
+
+    return result.data
+  })
+
+  const list = await Promise.all(fns);
+
+  console.log(list);
+  return list

@@ -1,0 +1,20 @@
+type: prompt
+parameters:
+  - id: FxSDCWVyXDACK5sSiYMkO
+    type: string
+    key: question
+prompts:
+  - type: message
+    data:
+      id: XxrRWk2WtHU7zbThXH-87
+      role: user
+      content: "{{ question }}"
+outputVariables:
+  - id: 3_nOILvED5SlB6_mUzsaI
+    name: $text
+id: 20240806093139-WaxIG1
+createdAt: 2024-08-06T01:31:39.745Z
+updatedAt: 2024-08-06T01:31:39.745Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 生成数据

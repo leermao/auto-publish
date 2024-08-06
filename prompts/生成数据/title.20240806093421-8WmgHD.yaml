@@ -1,0 +1,44 @@
+type: prompt
+parameters:
+  - id: yUq0yaSVvH7EVZWzvmwVQ
+    key: titles
+    from: editor
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806093315-4iybX7
+        from: assistant
+prompts:
+  - type: message
+    data:
+      id: MxKe52vlIgodibt1IPUqV
+      role: system
+      content: |-
+        我有一批文章标题
+
+        {{titles.titles}}
+
+        请从上面的标题中随机返回一个给我﻿
+  - type: message
+    data:
+      id: 20240806093503-uE0h8p
+      role: system
+      content: |-
+        要求：
+        1. 不要返回标题前面的需要
+        2. 不要返回引号﻿
+        3. 输出英文
+outputVariables:
+  - id: 5ElTXWmt8yYSCPx4Yg28F
+    name: $text
+    hidden: true
+  - id: gyO93hU7TNDnYz4uAcmPL
+    name: title
+id: 20240806093421-8WmgHD
+createdAt: 2024-08-06T01:34:21.405Z
+updatedAt: 2024-08-06T01:34:21.405Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: title
