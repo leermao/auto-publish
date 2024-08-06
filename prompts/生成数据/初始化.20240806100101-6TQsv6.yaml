@@ -31,6 +31,7 @@ parameters:
         from: assistant
         parameters:
           title: "{{ title.title }}"
+          content: "{{ content.content }}"
 prompts:
   BMRp6nl2A0zIDvdkRt9Ce:
     index: 0

@@ -2,6 +2,8 @@ type: image
 parameters:
   - id: DXqj92vUQJFyMvgvgfJHx
     key: title
+  - id: 6BU8XRtdwo6xNu5zznEaz
+    key: content
   - id: UOoKP46bV8TcT1v9OQrzK
     key: description
     from: editor
@@ -13,7 +15,8 @@ parameters:
         id: 20240806095334-NwXT4l
         from: assistant
         parameters:
-          title: "{{ title }}"
+          title: "{{ title }} {{ content }}"
+          content: "{{ title }} {{ content }}"
 prompts:
   KAHgOwKu4Qq06FWAAmv7h:
     index: 0

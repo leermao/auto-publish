@@ -1,7 +1,7 @@
 type: prompt
 parameters:
   - id: J4q0iEQBaqFfRnplrBtEU
-    key: title
+    key: content
     from: editor
     type: string
     source:
@@ -17,7 +17,7 @@ prompts:
       id: krjIqhGZH3N3af_TX8tOS
       role: user
       content: >-
-        你是一个图像提示生成器。从 {{ title }}}中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文,
+        你是一个图像提示生成器。从 {{ content }}}中提取关键主题，然后围绕关键主题写一段用于生成图片的描述，描述的内容不要脱离上下文,
         生成的图片要求适合作为当前内容的配图。
 
 
