@@ -30,7 +30,7 @@ prompts:
 outputVariables:
   - id: hxkznAtdGcUzwHQBv0hPB
     name: status
-    description: 上传转态
+    description: 输出结果
     required: true
 id: 20240806105335-fvtHsS
 createdAt: 2024-08-06T02:53:35.783Z
@@ -40,41 +40,23 @@ updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传 翻译
 model: gpt-4o-mini
 prompt: "{{question}}"
-code: >
-  const list = [{
-    translated_title: title,
-    translated_content: content,
-    language: 'en',
-  }, ...(translate?.list ||[])];
-
-
-  const getUserHeader = () => {
-    const user = context.user;
-    return {
-      'x-user-did': user?.did,
-      'x-user-role': user?.role,
-      'x-user-provider': user?.provider,
-      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
-      'x-user-wallet-os': user?.walletOS,
-    };
-  };
-
-
-
-  const fns = (list || []).map(async (i)=>{
+code: |
+  
+  const fns = (translate?.list ||[]).map(async (i)=>{
     const result = await call({
       name: 'did-comments',
-      path: joinURL('/api/posts/call', id, 'translations', i.language),
+      path: joinURL('api/call/posts', id, 'translations'),
       method: 'POST',
-      data: { title: i.translated_title || '', content: i.translated_content, author: context.user.did },
+      data: { 
+        title: i.translated_title || '', 
+        content: i.translated_content, 
+        locale: i.language },
       headers: getUserHeader()
     });
 
     return result.data
   })
 
-
   await Promise.all(fns);
 
-
-  return "success"
+  return {status: "success"}

@@ -23,27 +23,18 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传 Blog
 code: |
-  const getUserHeader = () => {
-    const user = context.user;
-    return {
-      'x-user-did': user?.did,
-      'x-user-role': user?.role,
-      'x-user-provider': user?.provider,
-      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
-      'x-user-wallet-os': user?.walletOS,
-    };
-  };
-
-
+  
   const response = await call({
     name: 'did-comments',
-    path: '/api/blogs/call/publish',
+    path: '/api/call/blog/publish',
     method: 'POST',
     data: { 
       title: title, 
       content:content, 
       publishTime: new Date(), 
-      author: context.user.did
+      boardId:'blog-default',
+      locale: 'en',
+      cover: image
     },
     headers: getUserHeader()
   });
@@ -59,15 +50,6 @@ code: |
       headers: getUserHeader()
     });
   }
-
-
-  await call({
-    name: 'did-comments',
-    path: joinURL('/api/blogs/call/', response.data?.id, 'settings'),
-    method: 'PUT',
-    data: { cover: image, author: context.user.did },
-    headers: getUserHeader()
-  });
 
   // 发布tag
   const id: string = response.data?.id;
