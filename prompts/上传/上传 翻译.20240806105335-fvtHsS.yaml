@@ -41,7 +41,6 @@ name: 上传 翻译
 model: gpt-4o-mini
 prompt: "{{question}}"
 code: |
-  
   const fns = (translate?.list ||[]).map(async (i)=>{
     const result = await call({
       name: 'did-comments',
