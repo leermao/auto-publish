@@ -33,8 +33,8 @@ parameters:
         id: 20240806105335-fvtHsS
         from: assistant
         parameters:
-          title: "{{ init.title }}"
-          content: "{{ init.content }}"
+          title: "{{ data.title }}"
+          content: "{{ data.content }}"
           id: "{{ upload.id }}"
 prompts:
   XxrRWk2WtHU7zbThXH-87:

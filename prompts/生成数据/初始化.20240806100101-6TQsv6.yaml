@@ -50,6 +50,6 @@ name: 初始化
 code: |
   return {
     title: title.title,
-    content: content.content,
+    content: (content.content || "").replace(/\\n/g, '\n'),
     image: image.$images?.[0]?.url
   }
