@@ -51,7 +51,7 @@ code: |
         title: i.translated_title || '', 
         content: i.translated_content, 
         locale: i.language },
-      headers: getUserHeader()
+      headers: context.getUserHeader()
     });
 
     return result.data

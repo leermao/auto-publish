@@ -36,7 +36,7 @@ code: |
       locale: 'en',
       cover: image
     },
-    headers: getUserHeader()
+    headers: context.getUserHeader()
   });
 
 
@@ -47,7 +47,7 @@ code: |
       path: `/api/blogs/call/${response.data?.id}/settings`,
       method: 'PUT',
       data: { labels: labels, author: context.user.did },
-      headers: getUserHeader()
+      headers: context.getUserHeader()
     });
   }
 
