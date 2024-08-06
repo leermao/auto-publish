@@ -29,7 +29,7 @@ code: |
     method: 'POST',
     data: { 
       title: title, 
-      content: (content||'').replace(/\\n/g, '\n'), , 
+      content: (content||''), , 
       publishTime: new Date(), 
       boardId:'blog-default',
       locale: 'en',

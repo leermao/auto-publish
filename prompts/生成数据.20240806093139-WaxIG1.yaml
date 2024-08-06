@@ -1,4 +1,4 @@
-type: function
+type: agent
 parameters:
   - id: vQGSADvuog7K6pLrDSc8N
     key: data
@@ -45,9 +45,7 @@ prompts:
         id: XxrRWk2WtHU7zbThXH-87
         role: user
         content: "{{ result }}"
-outputVariables:
-  - id: HZzkwKCme2YQAnVBBfwV2
-    name: $text
+outputVariables: []
 id: 20240806093139-WaxIG1
 createdAt: 2024-08-06T01:31:39.745Z
 updatedAt: 2024-08-06T01:31:39.745Z
