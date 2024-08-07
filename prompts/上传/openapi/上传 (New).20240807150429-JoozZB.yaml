@@ -1,4 +1,4 @@
-type: function
+type: agent
 parameters:
   - id: b83HpbOwjGLvj2rjmG45i
     key: labels
@@ -11,17 +11,36 @@ parameters:
   - id: jsXYB5VhsuuSDzOBiqSQ3
     key: image
   - id: Ub3fnAIuWqKVNzv1vI3Yz
-    key: translations
+    key: params
     type: source
     source:
       variableFrom: tool
       agent:
         projectId: "475837658589822976"
-        id: 20240807113423-y6zYyl
+        id: 20240807114921-bFxtko
         from: assistant
         parameters:
+          labels: "{{ labels }}"
+          needReview: "{{ needReview }}"
           title: "{{ title }}"
           content: "{{ content }}"
+          image: "{{ image }}"
+  - id: 2pteJ0cuZTv5vkU9eW3gV
+    key: result
+    type: source
+    source:
+      variableFrom: blockletAPI
+      api:
+        id: z1QXoKEUzHumFmaA7WbkSwxzbdMC4wgWJdC
+        parameters:
+          translations: "{{params.translations}}"
+          publishTime: "{{params.publishTime}}"
+          author: "{{params.author}}"
+          boardId: "{{params.boardId}}"
+          cover: "{{params.cover}}"
+          labels: "{{params.labels}}"
+          needReview: "{{params.needReview}}"
+          object: "{{ params.object1 }}"
 prompts:
   NTdJigtLCBziAsS48vBTh:
     index: 0
@@ -31,16 +50,19 @@ prompts:
         id: NTdJigtLCBziAsS48vBTh
         role: user
         content: "{{ question }}"
-outputVariables: []
-id: 20240807114921-bFxtko
+outputVariables:
+  - id: 1vHAxz8qiu9jSg6S9O-nt
+    name: result
+    from:
+      type: input
+      id: 2pteJ0cuZTv5vkU9eW3gV
+id: 20240807150429-JoozZB
 createdAt: 2024-08-06T02:52:42.615Z
 updatedAt: 2024-08-06T02:52:42.615Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传 (New)
 code: |
-  console.log(translations);
-
   const params = {
     translations: translations.list,
     publishTime: new Date(),
@@ -63,3 +85,4 @@ code: |
   const slug: string = response.data?.slug;
 
   return { id, slug };
+model: gpt-4o-mini

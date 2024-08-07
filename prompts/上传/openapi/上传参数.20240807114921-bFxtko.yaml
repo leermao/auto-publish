@@ -1,0 +1,106 @@
+type: function
+parameters:
+  - id: b83HpbOwjGLvj2rjmG45i
+    key: labels
+  - id: 93SC03mtN4PLhQODpuGnu
+    key: needReview
+  - id: 18oOEYlrV5GQm45QbLIC7
+    key: title
+  - id: uJ6DFISjgU55s1QxOulGs
+    key: content
+  - id: jsXYB5VhsuuSDzOBiqSQ3
+    key: image
+  - id: Ub3fnAIuWqKVNzv1vI3Yz
+    key: translates
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806103620-Jb5qkf
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+prompts:
+  NTdJigtLCBziAsS48vBTh:
+    index: 0
+    data:
+      type: message
+      data:
+        id: NTdJigtLCBziAsS48vBTh
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: j_4mxHT2d7n02dUWfi_W5
+    name: translations
+    type: array
+    element:
+      id: oFfxlOQhiq_vjJxPI4p3V
+      name: element
+      type: object
+      properties:
+        - id: vfOh70whW-b9KQaKqN9dW
+          type: string
+          name: title
+        - id: CHtvAx0bCQ_2a3O26OftN
+          type: string
+          name: content
+        - id: uh-s6SpyjPCuWtamOPirS
+          type: string
+          name: locale
+    required: true
+  - id: rsIJpnwRv_ne07IyfsNEc
+    name: publishTime
+    required: true
+  - id: ZL4Fo2hRNiQRLXCNyN78e
+    name: boardId
+    required: true
+  - id: HNmP3U4ueV5IRkjRLavrE
+    name: cover
+    required: true
+  - id: ecbM93ZDMMl1oAkw8Jl7f
+    name: labels
+    required: false
+  - id: LvYsGe2VJHsrQ1ps7htcP
+    name: author
+    required: true
+  - id: 88Qp6Rt1lX_ljyJAZLIxF
+    name: needReview
+    type: boolean
+    required: true
+id: 20240807114921-bFxtko
+createdAt: 2024-08-06T02:52:42.615Z
+updatedAt: 2024-08-06T02:52:42.615Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 上传参数
+code: |
+  const list = (translates?.list || []).map((i) => {
+    return {
+      title: i.translated_title || '',
+      content: (i.translated_content || '').replace(/\\n/g, '\n'),
+      locale: i.language,
+    };
+  });
+
+  const params = {
+    translations: [
+      {
+        title: title,
+        content: content,
+        locale: 'en',
+      },
+      ...list,
+    ],
+    publishTime: new Date().toISOString(),
+    boardId: 'blog-default',
+    cover: image,
+    labels: labels,
+    author: context.user.did,
+    needReview: Boolean(needReview),
+  };
+
+  return params;
+model: gpt-4o-mini
+prompt: "{{question}}"

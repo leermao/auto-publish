@@ -101,3 +101,4 @@ code: |
   const list = await Promise.all(fns);
 
   return { list }
+description: 废弃 (用起来比较麻烦)，需要Agent 支持遍历

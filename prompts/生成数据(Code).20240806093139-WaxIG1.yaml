@@ -21,7 +21,7 @@ parameters:
       variableFrom: tool
       agent:
         projectId: "475837658589822976"
-        id: 20240807114921-bFxtko
+        id: 20240807114412-onp4Pq
         from: assistant
         parameters:
           title: "{{ data.title }}"
@@ -40,12 +40,12 @@ prompts:
         role: user
         content: "{{ result }}"
 outputVariables: []
-id: 20240807115154-UahADD
+id: 20240806093139-WaxIG1
 createdAt: 2024-08-06T01:31:39.745Z
 updatedAt: 2024-08-06T01:31:39.745Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
-name: 生成数据 (New)
+name: 生成数据(Code)
 code: |-
   if(result.status ==='success') {
     return "成功"
