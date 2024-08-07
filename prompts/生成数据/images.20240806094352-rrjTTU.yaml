@@ -16,7 +16,7 @@ parameters:
         from: assistant
         parameters:
           title: "{{ title }} {{ content }}"
-          content: "{{ content }}"
+          content: "{{ content }} 1"
 prompts:
   KAHgOwKu4Qq06FWAAmv7h:
     index: 0
