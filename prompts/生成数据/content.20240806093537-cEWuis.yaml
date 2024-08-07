@@ -28,10 +28,11 @@ prompts:
       content: |-
         要求：
         1. 文章分为多段
-        2. 输出格式为 markdown，但是 content 不要包含标题内容
+        2. 输出格式为 markdown
         3. 结合你阅读过的书籍来编写博客内容
         4. 不要在文章中出现读过的书名﻿
         5. 输出英文
+        6. 输出的 content 不要包含标题内容
 outputVariables:
   - id: 96yVF-lW0umLp45jrj3Js
     name: $text

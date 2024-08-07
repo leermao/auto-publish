@@ -2,6 +2,7 @@ type: agent
 parameters:
   - id: md6TfhWW8K4KjDUtWaFCK
     key: needReview
+    type: boolean
   - id: EMqIUn7ScElctnFFSLNmG
     key: labels
     type: string
@@ -39,7 +40,9 @@ prompts:
         id: XxrRWk2WtHU7zbThXH-87
         role: user
         content: "{{ result }}"
-outputVariables: []
+outputVariables:
+  - id: VrVWyl_iW0HFbswKxxInr
+    name: ""
 id: 20240806093139-WaxIG1
 createdAt: 2024-08-06T01:31:39.745Z
 updatedAt: 2024-08-06T01:31:39.745Z

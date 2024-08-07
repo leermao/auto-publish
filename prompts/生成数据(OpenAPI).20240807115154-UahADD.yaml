@@ -2,6 +2,7 @@ type: agent
 parameters:
   - id: md6TfhWW8K4KjDUtWaFCK
     key: needReview
+    type: boolean
   - id: EMqIUn7ScElctnFFSLNmG
     key: labels
     type: string
