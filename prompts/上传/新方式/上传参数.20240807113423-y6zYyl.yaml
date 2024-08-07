@@ -25,7 +25,27 @@ prompts:
         id: NTdJigtLCBziAsS48vBTh
         role: user
         content: "{{ question }}"
-outputVariables: []
+outputVariables:
+  - id: JIh-Sxb85L3mzs4AsiOxs
+    name: list
+    type: array
+    element:
+      id: UX8-ABUXfORJrEC3pLw3J
+      name: element
+      type: object
+      properties:
+        - id: 7iEWGlyLghpZypXKNk9pi
+          type: string
+          name: title
+          required: true
+        - id: h7Yh7D5xAYpsKoqTAvXjt
+          type: string
+          name: content
+          required: true
+        - id: HOVQjQG4GQuKTgmh6oJGN
+          type: string
+          name: locale
+          required: true
 id: 20240807113423-y6zYyl
 createdAt: 2024-08-06T02:52:42.615Z
 updatedAt: 2024-08-06T02:52:42.615Z
@@ -38,25 +58,27 @@ code: |
     {
       title: translates.zh.translated_title,
       content: translates.zh.translated_content,
-      local: 'zh',
+      locale: 'zh',
     },
     {
       title: translates.zhTw.translated_title,
       content: translates.zhTw.translated_content,
-      local: 'zh-tw',
+      locale: 'zh-tw',
     },
     {
       title: translates.ja.translated_title,
       content: translates.ja.translated_content,
-      local: 'ja',
+      locale: 'ja',
     },
   ];
 
-  return [
-    {
-      title: title,
-      content: content,
-      local: 'en',
-    },
-    ...list,
-  ];
+  return {
+    list: [
+      {
+        title: title,
+        content: content,
+        locale: 'en',
+      },
+      ...list,
+    ],
+  };

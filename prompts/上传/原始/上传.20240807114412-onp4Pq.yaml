@@ -39,10 +39,10 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传
 code: |
-  const translationsFormat = (translations?.list || []).map(async (i) => {
+  const translationsFormat = (translations?.list || []).map((i) => {
     return {
       title: i.translated_title || '',
-      content: (i.translated_content || '').replace(/\\n/g, '\n'),
+      content: (i.translated_content || ''),
       locale: i.language,
     };
   });

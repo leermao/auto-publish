@@ -1,5 +1,9 @@
 type: function
 parameters:
+  - id: b83HpbOwjGLvj2rjmG45i
+    key: labels
+  - id: 93SC03mtN4PLhQODpuGnu
+    key: needReview
   - id: 18oOEYlrV5GQm45QbLIC7
     key: title
   - id: uJ6DFISjgU55s1QxOulGs
@@ -18,10 +22,6 @@ parameters:
         parameters:
           title: "{{ title }}"
           content: "{{ content }}"
-  - id: b83HpbOwjGLvj2rjmG45i
-    key: labels
-  - id: 93SC03mtN4PLhQODpuGnu
-    key: needReview
 prompts:
   NTdJigtLCBziAsS48vBTh:
     index: 0
@@ -39,8 +39,10 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传 (New)
 code: |
+  console.log(translations);
+
   const params = {
-    translations: translations,
+    translations: translations.list,
     publishTime: new Date(),
     boardId: 'blog-default',
     cover: image,
