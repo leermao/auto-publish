@@ -42,7 +42,7 @@ parameters:
   - id: ah2wWfLQm9hZv9fFIQXYJ
     key: content
 code: |
-  const languages = ["zh"];
+  const languages = ["zh", 'ja', 'zh-tw'];
 
   const fns = (languages || []).map(async (i)=>{
     const result = await call({

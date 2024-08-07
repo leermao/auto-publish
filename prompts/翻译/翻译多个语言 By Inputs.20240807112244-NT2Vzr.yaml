@@ -1,0 +1,103 @@
+id: 20240807112244-NT2Vzr
+type: agent
+createdAt: 2024-08-06T02:36:20.930Z
+updatedAt: 2024-08-06T02:36:20.930Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+prompts:
+  fscMlMzBB3OD1asjtbB7-:
+    index: 0
+    data:
+      type: message
+      data:
+        id: fscMlMzBB3OD1asjtbB7-
+        role: user
+outputVariables:
+  - id: 7S9xliY1RoetZBBa57SRN
+    name: zh
+    from:
+      type: input
+      id: mYyHvrfn6TcsGx8NQwsId
+  - id: TGYHqQUsP5vVAXFXYmPAx
+    name: zhTw
+    from:
+      type: input
+      id: KpMUM5v3erhGSOIP7MUKt
+  - id: O7g_DQf7ejtQ3_DLIUuIF
+    name: ja
+    from:
+      type: input
+      id: SfATyfxio0b9AspnPZkDX
+name: 翻译多个语言 By Inputs
+parameters:
+  - id: VjiwA4vgq0MwZHqiHEfey
+    key: title
+  - id: ah2wWfLQm9hZv9fFIQXYJ
+    key: content
+  - id: mYyHvrfn6TcsGx8NQwsId
+    key: zh
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806101303-BwcRHM
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+          language: 简体中文
+  - id: KpMUM5v3erhGSOIP7MUKt
+    key: zhTW
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806101303-BwcRHM
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+          language: 繁體中文
+  - id: SfATyfxio0b9AspnPZkDX
+    key: ja
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806101303-BwcRHM
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+          language: 日语
+code: |
+  const languages = ["zh"];
+
+  const fns = (languages || []).map(async (i)=>{
+    const result = await call({
+      name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
+      method: 'POST',
+      path: '/api/ai/call'
+      data: {
+        projectId: '475837658589822976',
+        ref: 'main',
+        assistantId: '20240806101303-BwcRHM',
+        inputs: {
+          title,
+          content: content,
+          language: i
+        },
+        sessionId: 'call',
+      },
+      headers: context.getUserHeader()
+    });
+
+    return {...result.data,language: i }
+  })
+
+  const list = await Promise.all(fns);
+
+  return { list }

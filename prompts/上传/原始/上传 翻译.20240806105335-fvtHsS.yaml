@@ -41,21 +41,22 @@ name: 上传 翻译
 model: gpt-4o-mini
 prompt: "{{question}}"
 code: |
-  const fns = (translate?.list ||[]).map(async (i)=>{
+  const fns = (translate?.list || []).map(async (i) => {
     const result = await call({
       name: 'did-comments',
       path: joinURL('api/call/posts', id, 'translations'),
       method: 'POST',
-      data: { 
-        title: i.translated_title || '', 
-        content: (i.translated_content||'').replace(/\\n/g, '\n'), , 
-        locale: i.language },
-      headers: context.getUserHeader()
+      data: {
+        title: i.translated_title || '',
+        content: (i.translated_content || '').replace(/\\n/g, '\n'),
+        locale: i.language,
+      },
+      headers: context.getUserHeader(),
     });
 
-    return result.data
-  })
+    return result.data;
+  });
 
   await Promise.all(fns);
 
-  return {status: "success"}
+  return { status: 'success' };

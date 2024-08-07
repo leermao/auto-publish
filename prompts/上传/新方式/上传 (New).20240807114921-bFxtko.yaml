@@ -6,6 +6,22 @@ parameters:
     key: content
   - id: jsXYB5VhsuuSDzOBiqSQ3
     key: image
+  - id: Ub3fnAIuWqKVNzv1vI3Yz
+    key: translations
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240807113423-y6zYyl
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+  - id: b83HpbOwjGLvj2rjmG45i
+    key: labels
+  - id: 93SC03mtN4PLhQODpuGnu
+    key: needReview
 prompts:
   NTdJigtLCBziAsS48vBTh:
     index: 0
@@ -16,45 +32,32 @@ prompts:
         role: user
         content: "{{ question }}"
 outputVariables: []
-id: 20240806105242-f8mkug
+id: 20240807114921-bFxtko
 createdAt: 2024-08-06T02:52:42.615Z
 updatedAt: 2024-08-06T02:52:42.615Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
-name: 上传 Blog
+name: 上传 (New)
 code: |
+  const params = {
+    translations: translations,
+    publishTime: new Date(),
+    boardId: 'blog-default',
+    cover: image,
+    labels: labels,
+    needReview: Boolean(needReview),
+  };
+
   const response = await call({
     name: 'did-comments',
     path: '/api/call/blog/publish',
     method: 'POST',
-    data: { 
-      title: title, 
-      content: (content||''), , 
-      publishTime: new Date(), 
-      boardId:'blog-default',
-      locale: 'en',
-      cover: image
-    },
-    headers: context.getUserHeader()
+    data: params,
+    headers: context.getUserHeader(),
   });
-
-
-  const labels = [];
-  if(labels.length) {
-    await call({
-      name: 'did-comments',
-      path: `/api/blogs/call/${response.data?.id}/settings`,
-      method: 'PUT',
-      data: { labels: labels, author: context.user.did },
-      headers: context.getUserHeader()
-    });
-  }
 
   // 发布tag
   const id: string = response.data?.id;
   const slug: string = response.data?.slug;
 
-  return {
-    id,
-    slug
-  }
+  return { id, slug };

@@ -1,0 +1,62 @@
+type: function
+parameters:
+  - id: 18oOEYlrV5GQm45QbLIC7
+    key: title
+  - id: uJ6DFISjgU55s1QxOulGs
+    key: content
+  - id: 9cLvNY0Udj20eHLyG1KkN
+    key: translates
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240807112244-NT2Vzr
+        from: assistant
+        parameters:
+          title: "{{ title }}"
+          content: "{{ content }}"
+prompts:
+  NTdJigtLCBziAsS48vBTh:
+    index: 0
+    data:
+      type: message
+      data:
+        id: NTdJigtLCBziAsS48vBTh
+        role: user
+        content: "{{ question }}"
+outputVariables: []
+id: 20240807113423-y6zYyl
+createdAt: 2024-08-06T02:52:42.615Z
+updatedAt: 2024-08-06T02:52:42.615Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 上传参数
+code: |
+  // 不建议用这种方式, 比较麻烦
+  const list = [
+    {
+      title: translates.zh.translated_title,
+      content: translates.zh.translated_content,
+      local: 'zh',
+    },
+    {
+      title: translates.zhTw.translated_title,
+      content: translates.zhTw.translated_content,
+      local: 'zh-tw',
+    },
+    {
+      title: translates.ja.translated_title,
+      content: translates.ja.translated_content,
+      local: 'ja',
+    },
+  ];
+
+  return [
+    {
+      title: title,
+      content: content,
+      local: 'en',
+    },
+    ...list,
+  ];
