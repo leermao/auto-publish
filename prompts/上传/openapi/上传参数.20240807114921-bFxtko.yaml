@@ -12,7 +12,7 @@ parameters:
     key: image
   - id: Ub3fnAIuWqKVNzv1vI3Yz
     key: translates
-    type: source
+    type: string
     source:
       variableFrom: tool
       agent:

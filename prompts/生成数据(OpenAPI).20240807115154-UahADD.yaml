@@ -15,6 +15,18 @@ parameters:
         projectId: "475837658589822976"
         id: 20240806100101-6TQsv6
         from: assistant
+  - id: zYqnLbiN6Dyha0DbTxePn
+    key: translates
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "475837658589822976"
+        id: 20240806103620-Jb5qkf
+        from: assistant
+        parameters:
+          title: "{{ data.title }}"
+          content: "{{ data.content }}"
   - id: PD7ZJaRX8jIkkhUTDHp9p
     key: upload
     type: source
@@ -25,6 +37,7 @@ parameters:
         id: 20240807150429-JoozZB
         from: assistant
         parameters:
+          translates: "{{ translates }}"
           labels: "{{ labels }}"
           needReview: "{{ needReview }}"
           title: "{{ data.title }}"
@@ -40,7 +53,12 @@ prompts:
         id: XxrRWk2WtHU7zbThXH-87
         role: user
         content: "{{ result }}"
-outputVariables: []
+outputVariables:
+  - id: HneG50x9aI4iviUxDo6Gx
+    name: result
+    from:
+      type: input
+      id: PD7ZJaRX8jIkkhUTDHp9p
 id: 20240807115154-UahADD
 createdAt: 2024-08-06T01:31:39.745Z
 updatedAt: 2024-08-06T01:31:39.745Z
