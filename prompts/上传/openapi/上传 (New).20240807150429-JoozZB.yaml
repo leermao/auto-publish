@@ -12,6 +12,8 @@ parameters:
     key: image
   - id: ULgFjqRRFQB91JJJDfx63
     key: translates
+    type: string
+    options: {}
   - id: Ub3fnAIuWqKVNzv1vI3Yz
     key: params
     type: source
@@ -36,7 +38,10 @@ parameters:
       api:
         id: z1QXoKEUzHumFmaA7WbkSwxzbdMC4wgWJdC
         parameters:
-          translations: "{{params.translations}}"
+          translations:
+            - title: "{{ params.translations.0.title }}"
+              content: "{{ params.translations.0.content }}"
+              locale: "{{ params.translations.0.locale }}"
           publishTime: "{{params.publishTime}}"
           author: "{{params.author}}"
           boardId: "{{params.boardId}}"
@@ -59,13 +64,6 @@ outputVariables:
     from:
       type: input
       id: 2pteJ0cuZTv5vkU9eW3gV
-  - id: aKFwL6SwW0MroHyl6SizE
-    name: ""
-    type: object
-    element:
-      id: uybSAnmDASkKeMCgtAt7l
-      name: element
-      type: string
 id: 20240807150429-JoozZB
 createdAt: 2024-08-06T02:52:42.615Z
 updatedAt: 2024-08-06T02:52:42.615Z

@@ -4,7 +4,8 @@ parameters:
     key: title
   - id: 6BU8XRtdwo6xNu5zznEaz
     key: content
-  - id: UOoKP46bV8TcT1v9OQrzK
+  - hidden: false
+    id: UOoKP46bV8TcT1v9OQrzK
     key: description
     from: editor
     type: source
@@ -16,7 +17,7 @@ parameters:
         from: assistant
         parameters:
           title: "{{ title }} {{ content }}"
-          content: "{{ content }} 1"
+          content: "{{ content }} "
 prompts:
   KAHgOwKu4Qq06FWAAmv7h:
     index: 0
