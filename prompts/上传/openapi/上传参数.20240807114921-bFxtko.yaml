@@ -79,7 +79,7 @@ code: |
   const list = (translates?.list || []).map((i) => {
     return {
       title: i.translated_title || '',
-      content: (i.translated_content || '').replace(/\\n/g, '\n'),
+      content: (i.translated_content || '').replace(/\+n/g, '\n'),
       locale: i.language,
     };
   });
@@ -88,8 +88,8 @@ code: |
     translations: [
       {
         title: title,
-        content: content,
-        locale: 'en',
+        content: content.replace(/\+n/g, '\n'),
+        locale: 'zh',
       },
       ...list,
     ],
@@ -100,6 +100,8 @@ code: |
     author: context.user.did,
     needReview: Boolean(needReview),
   };
+
+  console.log(params)
 
   return params;
 model: gpt-4o-mini

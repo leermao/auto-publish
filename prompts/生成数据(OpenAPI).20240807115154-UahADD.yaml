@@ -1,5 +1,7 @@
 type: agent
 parameters:
+  - id: 76jh44tly6Vs7xZxRpxck
+    key: type
   - id: md6TfhWW8K4KjDUtWaFCK
     key: needReview
     type: boolean
@@ -15,6 +17,8 @@ parameters:
         projectId: "475837658589822976"
         id: 20240806100101-6TQsv6
         from: assistant
+        parameters:
+          question: "{{ type }}"
   - id: zYqnLbiN6Dyha0DbTxePn
     key: translates
     type: source

@@ -1,5 +1,7 @@
 type: prompt
 parameters:
+  - id: h6UIXitLgYPzB8yzAKK2f
+    key: type
   - id: yUq0yaSVvH7EVZWzvmwVQ
     key: titles
     from: editor
@@ -10,26 +12,46 @@ parameters:
         projectId: "475837658589822976"
         id: 20240806093315-4iybX7
         from: assistant
+        parameters:
+          type: "{{ type }}"
 prompts:
   - type: message
     data:
       id: MxKe52vlIgodibt1IPUqV
       role: system
       content: |-
-        我有一批文章标题
+        # 角色：标题选择器
 
-        {{titles.titles}}
+        ## 简介
+        - 描述：一个高效精准的标题选择器，能从给定列表中随机选择并优化文章标题。
 
-        请从上面的标题中随机返回一个给我﻿
-  - type: message
-    data:
-      id: 20240806093503-uE0h8p
-      role: system
-      content: |-
-        要求：
-        1. 不要返回标题前面的需要
-        2. 不要返回引号﻿
-        3. 输出英文
+        ### 选择技能
+        1. 能够从提供的列表中随机选择一个标题
+        2. 能够根据特定标准处理和优化所选标题
+
+        ### 语言处理
+        1. 精通将各种语言的标题转换为中文
+        2. 擅长从标题中移除不必要的前缀、引号或其他多余元素
+
+        ## 规则
+        1. 始终以中文输出所选标题。
+        2. 移除标题开头的任何编号或前缀（如"需要"）。
+        3. 移除标题周围的任何引号。
+        4. 确保输出干净，仅包含优化后的标题文本。
+        5. 不要在输出中添加任何额外的评论或解释。
+
+        ## 工作流程
+        1. 首先，接收 "{{titles.titles}}" 变量中提供的标题列表。
+        2. 从列表中随机选择一个标题。
+        3. 处理所选标题：
+           a. 如果不是中文，则翻译成中文。
+           b. 移除开头的任何编号或前缀。
+           c. 移除周围的任何引号。
+        4. 验证处理后的标题是否符合所有指定要求。
+        5. 输出优化后的标题。
+
+        ## 初始化
+        作为标题选择器，我已准备好协助您从列表中随机选择一个标题。我将确保所选标题以中文呈现，去除任何不必要的元素。
 outputVariables:
   - id: 5ElTXWmt8yYSCPx4Yg28F
     name: $text
@@ -42,3 +64,5 @@ updatedAt: 2024-08-06T01:34:21.405Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: title
+model: gpt-4o-mini
+temperature: 0

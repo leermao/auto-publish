@@ -39,10 +39,10 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: 上传
 code: |
-  const translationsFormat = (translations?.list || []).map((i) => {
+  const list = (translates?.list || []).map((i) => {
     return {
       title: i.translated_title || '',
-      content: (i.translated_content || ''),
+      content: (i.translated_content || '').replace(/\+n/g, '\n'),
       locale: i.language,
     };
   });
@@ -51,28 +51,19 @@ code: |
     translations: [
       {
         title: title,
-        content: content,
-        locale: 'en',
+        content: content.replace(/\+n/g, '\n'),
+        locale: 'zh',
       },
-      ...(translationsFormat || []),
+      ...list,
     ],
-    publishTime: new Date(),
+    publishTime: new Date().toISOString(),
     boardId: 'blog-default',
     cover: image,
     labels: labels,
+    author: context.user.did,
     needReview: Boolean(needReview),
   };
 
-  const response = await call({
-    name: 'did-comments',
-    path: '/api/call/blog/publish',
-    method: 'POST',
-    data: params,
-    headers: context.getUserHeader(),
-  });
+  console.log(params)
 
-  // 发布tag
-  const id: string = response.data?.id;
-  const slug: string = response.data?.slug;
-
-  return { id, slug };
+  return params;

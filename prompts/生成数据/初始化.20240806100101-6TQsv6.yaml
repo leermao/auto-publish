@@ -1,5 +1,7 @@
 type: function
 parameters:
+  - id: ryO1IDDPSZMETdI99AQR7
+    key: type
   - id: qyP3grFpN8EDJLTS7PFI2
     key: title
     type: source
@@ -9,6 +11,8 @@ parameters:
         projectId: "475837658589822976"
         id: 20240806093421-8WmgHD
         from: assistant
+        parameters:
+          type: "{{ type }}"
   - id: vYaIz4wvtBvegdzdhxoqo
     key: content
     type: source
