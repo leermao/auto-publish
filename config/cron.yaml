@@ -1,7 +1,25 @@
 jobs:
   - id: lBmHIlxgvd03XWBdcQtH2
-    name: ""
+    name: 占星
     cronExpression: "* * * * *"
     enable: false
     agentId: 20240807115154-UahADD
-    inputs: {}
+    inputs:
+      type: 占星
+      labels: ai_llm
+  - id: j6PL19Z0o4NJ9Cr4eFa5P
+    name: 人际关系文章
+    cronExpression: "* * * * *"
+    enable: false
+    agentId: 20240807115154-UahADD
+    inputs:
+      type: 占星&人际关系
+      labels: relationship
+  - id: npaneHzEsLL4xsP9iomWq
+    name: 自我发现文章
+    cronExpression: "* * * * *"
+    enable: false
+    agentId: 20240807115154-UahADD
+    inputs:
+      type: 占星&自我发现
+      labels: self_discovery

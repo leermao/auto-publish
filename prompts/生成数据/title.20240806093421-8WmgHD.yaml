@@ -65,4 +65,4 @@ createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: title
 model: gpt-4o-mini
-temperature: 0
+temperature: 0.1
